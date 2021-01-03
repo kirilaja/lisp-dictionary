@@ -1,0 +1,31 @@
+; These functions will be defined assuming standard arithmetic operations,
+; number comparisons, floating point, etc. and: atom eq car cdr cons cond
+; if quote backquote labels defun apply read eval print loop set. 
+
+; The above may seem like a lot of pre-defined functions but it saves 
+; a lot of work in the beginning for more towards the end. The first five 
+; and quote are necessary to navigate the parens syntax and compare lists 
+; and symbols. Backquote is necessary for some macros. Many predicates involve 
+; multiple comparisons, which cond and if will allow. labels and defun 
+; allow named functions, which are necessary for recursion. Eval and apply, 
+; in a sense, are LISP. And, of course, read eval print and loop are 
+; necessary for a REPL. set is the equivalent of labels and defun for symbols.
+ 
+; Pre-requisite functions will tend to be defined prior to subsequent functions.
+; Many functions meant to work on more complex data structures will tend 
+; to be defined to work on their list equivalents. That may be a 
+; Big O no no but this dictionary is for educational purposes for 
+; beginner programmers (not for implementation) or for non-beginner 
+; programmers as some soothing bedtime reading.
+
+; The tendency will be to define functions recursively.
+
+; Note that each function name has a dot symbol after it 
+; to differentiate it from any function in an existing 
+; LISP implementation to eliminate confusion.
+
+(defun zerop. (x) (eq x 0))
+(defun 1+. (x) (+ x 1))
+(defun 1-. (x) (- x 1))
+(defun null. (x) (eq x '()))
+(defun length. (x) (if (null x) 0 (1+ (length (cdr x)))))
