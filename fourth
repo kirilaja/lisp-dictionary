@@ -1,0 +1,90 @@
+;LOGIC DEFINED IN TERMS OF: OR, NOT
+
+
+;table of four pairs of inputs to test each function.
+;note that the pairs count in binary starting from 0. 
+;binary=>decimal: (0 0) =>0, (0 1)=>1, (1 0)=>2, (1 1)=>3
+;substitute NIL for F=0 and T for T=1, of course
+;for F=0 and T=1
+;((0 0) 
+; (0 1) 
+; (1 0) 
+; (1 1))
+
+;the results of the four sets of inputs are the commented line
+;prior to the LISP form equivalent. 
+
+;note that the results also count in binary starting from 0 
+;and going until the binary equivalent of 15 in standard decimal.
+
+;this is a pretty standard way to represent logic tables, 
+;especially since computers happened.
+
+;FALSE, 0
+;results: (0 0 0 0)=>0
+NIL
+
+;a AND b, T when both are T
+;results: (0 0 0 1)
+(not (or (not a) (not b)))                           
+
+;a-b
+;results: (0 0 1 0)
+(not (or (not a) b))
+
+;a, T when a is T
+;results: (0 0 1 1)
+A
+
+;b-a
+;results: (0 1 0 0)
+(not (or (not b) a))
+                                                                                     
+;b, T when b is T
+;results: (0 1 0 1)
+B
+
+;a XOR b, T when one is T, equivalent to (not (equal a b)), also called exclusive-or
+;results: (0 1 1 0)
+(or (not (or (not a) b)) (not (or (not b) a)))
+
+;a OR b, T when either or both are T, also called inclusive-or
+;results: (0 1 1 1)
+(or a b)
+
+;a NOR b, T when both are NIL
+;results: (1 0 0 0)
+(not (or a b))
+
+;a==b, T when both are T or both are NIL, i.e. equal
+;results: (1 0 0 1)
+(not (or (not (or (not a) b)) (not (or (not b) a))))
+
+;NOT b
+;results: (1 0 1 0)
+(not b)
+
+;b->a, b implies a
+;results: (1 0 1 1)
+(or (not b) a)
+
+;NOT a
+;results: (1 1 0 0)
+(not a)
+                                             
+;a->b, a implies b
+;results: (1 1 0 1)
+(or (not a) b)
+
+;a NAND b, equivalent to (not (and a b))
+;results: (1 1 1 0)
+(not (not (or (not a) (not b))))                     
+
+;1, TRUE        
+;results: (1 1 1 1)
+T
+
+;the eventual goal of the above is to implement the whole language through NOR gates.
+;see the previous post relating if to b above. if each logic gate is associated with a 
+;logic gate form from the above, then there would ostensibly be 16 basic forms for the 
+;language. As if a programming language could work on anything but logic...
