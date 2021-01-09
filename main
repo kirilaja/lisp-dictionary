@@ -1,0 +1,125 @@
+;atom
+(defun consp (x) (not (atom x)))
+
+;eq
+(defun zerop (x) (eq x 0))
+(defun null (x) (eq x '()))
+
+;car
+(defun first (x) (car x))
+(defun caar (x) (car (car x)))   
+(defun caaar (x) (car (car (car x))))
+(defun caaaar (x) (car (car (car (car x)))))
+
+;cdr
+(defun rest (x) (cdr x))
+(defun cddr (x) (cdr (cdr x)))
+(defun cdddr (x) (cdr (cdr (cdr x))))  
+(defun cddddr (x) (cdr (cdr (cdr (cdr x)))))  
+
+;cons
+
+;atom eq 
+(defun listp (x) (or (not (atom x)) (null x)))
+
+;atom car
+;atom cdr
+;atom cons
+;eq car
+
+;eq cdr
+(defun nthcdr (x y) (if (= x 0) y (nthcdr (- x 1) (cdr y))))
+(defun length (x) (if (null x) 0 (1+ (length (cdr x)))))
+(defun last (x) (if (= (length x) 1) x (last (cdr x))))
+
+;eq cons
+(defun make-list (i s) (if (zerop i) nil (cons s (make-list (- i 1) s))))
+
+;car cdr
+(defun second (x) (car (cdr x)))  
+(defun third (x) (car (cdr (cdr x)))) 
+(defun fourth (x) (car (cdr (cdr (cdr x))))) 
+(defun fifth (x) (car (cdr (cdr (cdr (cdr x)))))) 
+(defun sixth (x) (car (cdr (cdr (cdr (cdr (cdr x))))))) 
+(defun seventh (x) (car (cdr (cdr (cdr (cdr (cdr (cdr x)))))))) 
+(defun eighth (x) (car (cdr (cdr (cdr (cdr (cdr (cdr (cdr x))))))))) 
+(defun ninth (x) (car (cdr (cdr (cdr (cdr (cdr (cdr (cdr (cdr x)))))))))) 
+(defun tenth (x) (car (cdr (cdr (cdr (cdr (cdr (cdr (cdr (cdr (cdr x)))))))))))
+(defun caaadr (x) (car (car (car (cdr x)))))  
+(defun caadar (x) (car (car (cdr (car x)))))   
+(defun caaddr (x) (car (car (cdr (cdr x)))))   
+(defun caadr (x) (car (car (cdr x))))   
+(defun cadaar (x) (car (cdr (car (car x)))))    
+(defun cadadr (x) (car (cdr (car (cdr x)))))   
+(defun cadar (x) (car (cdr (car x))))   
+(defun caddar (x) (car (cdr (cdr (car x)))))   
+(defun cadddr (x) (car (cdr (cdr (cdr x)))))   
+(defun caddr (x) (car (cdr (cdr x))))   
+(defun cadr (x) (car (cdr x)))   
+(defun cdaaar (x) (cdr (car (car (car x))))) 
+(defun cdaadr (x) (cdr (car (car (cdr x)))))  
+(defun cdaar (x) (cdr (car (car x))))  
+(defun cdadar (x) (cdr (car (cdr (car x)))))  
+(defun cdaddr (x) (cdr (car (cdr (cdr x)))))  
+(defun cdadr (x) (cdr (car (cdr x))))  
+(defun cdar (x) (cdr (car x)))  
+(defun cddaar (x) (cdr (cdr (car (car x)))))  
+(defun cddadr (x) (cdr (cdr (car (cdr x)))))  
+(defun cddar (x) (cdr (cdr (car x))))  
+(defun cdddar (x) (cdr (cdr (cdr (car x)))))
+
+;car cons
+;cdr cons
+;atom eq car
+;atom eq cdr
+;atom eq cons
+;atom car cdr
+;atom car cons
+;atom cdr cons
+
+;eq car cdr
+(defun nth (x y) (if (= x 0) (car y) (nth (- x 1) (cdr y)))) 
+(defun member (x y) (if (null y) nil (if (eq x (car y)) y (member x (cdr y)))))   
+
+;eq car cons
+;eq cdr cons
+;car cdr cons
+;atom eq car cdr
+
+;eq car cdr cons
+(defun append (x y) (if (null x) y (cons (car x) (append (cdr x) y))))
+(defun union (x y) (if (null x) y (if (member (car x) y) (union (cdr x) y) (if t (cons (car x) (union (cdr x) y))))))
+(defun intersection (x y) (if (null x) nil (if (member (car x) y) (cons (car x) (intersection (cdr x) y)) (if t (intersection (cdr x) y))))) 
+
+;car cdr cons atom
+(defun copy-list (x) (if (atom x) x (cons (car x) (copy-list (cdr x)))))
+(defun copy-tree (x) (if (atom x) x (cons (copy-tree (car x)) (copy-tree (cdr x)))))
+
+;cdr cons atom eq
+;cons atom eq car
+;atom eq car cdr cons
+ 
+;math
+(defun 1+ (x) (+ x 1))
+(defun 1- (x) (- x 1))
+(defun abs (x) (if (> x 0) x (- 0 x)))
+(defun plusp (x) (if (> x 0) t))
+(defun minusp (x) (if (< x 0) t))
+(defun >= (x y) (or (> x y) (= x y)))
+(defun <= (x y) (or (< x y) (= x y)))
+(defun /= (x y) (or (< x y) (> x y)))
+
+;lambda
+(defun or (a b) (if a t (if t b)))
+(defun not (b) (if b nil (if t t)))
+
+;logic
+(defun and (a b) (not (or (not a) (not b))))                           
+(defun a-b (a b) (not (or (not a) b)))
+(defun b-a (a b) (not (or (not b) a)))
+(defun xor (a b) (or (not (or (not a) b)) (not (or (not b) a))))
+(defun nor (a b) (not (or a b)))
+(defun a==b (a b) (not (or (not (or (not a) b)) (not (or (not b) a)))))
+(defun b->a (a b) (or (not b) a))
+(defun a->b (a b) (or (not a) b))
+(defun nand (a b) (not (not (or (not a) (not b))))
