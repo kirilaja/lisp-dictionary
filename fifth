@@ -1,5 +1,0 @@
-(defun listp (x) (or (not (atom x)) (null x)))  
-(defun consp (x) (not (atom x)))
-(defun append (x y) (if (null x) y (cons (car x) (append (cdr x) y))))
-(defun nth (x y) (if (= x 0) (car y) (nth (- x 1) (cdr y)))) 
-(defun nthcdr (x y) (if (= x 0) y (nthcdr (- x 1) (cdr y))))
