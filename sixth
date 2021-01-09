@@ -1,5 +1,0 @@
-(defun last (x) (if (= (length x) 1) x (last (cdr x))))
-(defun member (x y) (if (null y) nil (if (eq x (car y)) y (member x (cdr y))))) 
-(defun union (x y) (if (null x) y (if (member (car x) y) (union (cdr x) y) (if t (cons (car x) (union (cdr x) y))))))
-(defun intersection (x y) (if (null x) nil (if (member (car x) y) (cons (car x) (intersection (cdr x) y)) (if t (intersection (cdr x) y))))) 
-(defun gcd (m n) (let ((r 1)) (cond ((< m n) (gcd n m)) ((= (rem m n) 0) n) (t (gcd n (rem m n))))))
