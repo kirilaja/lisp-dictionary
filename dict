@@ -123,3 +123,8 @@
 (defun b->a (a b) (or (not b) a))
 (defun a->b (a b) (or (not a) b))
 (defun nand (a b) (not (not (or (not a) (not b))))
+
+;set
+(defun rplaca (x y) (setf (car x) y))
+(defun rplacd (x y) (setf (cdr x) y))
+(defun pop (y) (let ((x (car y))) (setf y (cdr y)) x))
