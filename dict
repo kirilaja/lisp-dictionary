@@ -18,6 +18,7 @@
 (defun cddddr (x) (cdr (cdr (cdr (cdr x)))))  
 
 ;cons
+(defun acons (key val alist) (cons (cons key val) alist))
 
 ;atom eq 
 (defun listp (x) (or (consp x) (null x)))
