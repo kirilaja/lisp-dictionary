@@ -20,7 +20,7 @@
 ;cons
 
 ;atom eq 
-(defun listp (x) (or (not (atom x)) (null x)))
+(defun listp (x) (or (consp x) (null x)))
 
 ;atom car
 ;atom cdr
@@ -36,15 +36,6 @@
 (defun make-list (i s) (if (zerop i) nil (cons s (make-list (- i 1) s))))
 
 ;car cdr
-(defun second (x) (car (cdr x)))  
-(defun third (x) (car (cdr (cdr x)))) 
-(defun fourth (x) (car (cdr (cdr (cdr x))))) 
-(defun fifth (x) (car (cdr (cdr (cdr (cdr x)))))) 
-(defun sixth (x) (car (cdr (cdr (cdr (cdr (cdr x))))))) 
-(defun seventh (x) (car (cdr (cdr (cdr (cdr (cdr (cdr x)))))))) 
-(defun eighth (x) (car (cdr (cdr (cdr (cdr (cdr (cdr (cdr x))))))))) 
-(defun ninth (x) (car (cdr (cdr (cdr (cdr (cdr (cdr (cdr (cdr x)))))))))) 
-(defun tenth (x) (car (cdr (cdr (cdr (cdr (cdr (cdr (cdr (cdr (cdr x)))))))))))
 (defun caaadr (x) (car (car (car (cdr x)))))  
 (defun caadar (x) (car (car (cdr (car x)))))   
 (defun caaddr (x) (car (car (cdr (cdr x)))))   
@@ -67,6 +58,15 @@
 (defun cddadr (x) (cdr (cdr (car (cdr x)))))  
 (defun cddar (x) (cdr (cdr (car x))))  
 (defun cdddar (x) (cdr (cdr (cdr (car x)))))
+(defun second (x) (cadr x))  
+(defun third (x) (caddr x)) 
+(defun fourth (x) (cadddr x))
+(defun fifth (x) (car (cddddr x)))
+(defun sixth (x) (cadr (cddddr x)))
+(defun seventh (x) (caddr (cddddr x)))
+(defun eighth (x) (cadddr (cddddr x)))
+(defun ninth (x) (car (cddddr (cddddr x))))
+(defun tenth (x) (cadr (cddddr (cddddr x))))
 
 ;car cons
 ;cdr cons
