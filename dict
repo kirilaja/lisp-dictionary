@@ -86,6 +86,7 @@
 ;eq cdr cons
 ;car cdr cons
 ;atom eq car cdr
+(defun assoc (x a) (if (equal (caar a) x) (car a) (assoc x (cdr a)))) ; LISP 1.5
 
 ;eq car cdr cons
 (defun append (x y) (if (null x) y (cons (car x) (append (cdr x) y))))
