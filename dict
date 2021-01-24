@@ -2,7 +2,6 @@
 (defun consp (x) (not (atom x)))
 
 ;eq
-(defun zerop (x) (eq x 0))
 (defun null (x) (eq x '()))
 
 ;car
