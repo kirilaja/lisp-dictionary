@@ -102,8 +102,6 @@
 ;atom eq car cdr cons
  
 ;math
-(defun 1+ (x) (+ x 1))
-(defun 1- (x) (- x 1))
 (defun abs (x) (if (> x 0) x (- 0 x)))
 (defun plusp (x) (if (> x 0) t))
 (defun minusp (x) (if (< x 0) t))
