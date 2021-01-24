@@ -29,7 +29,7 @@
 ;eq car
 
 ;eq cdr
-(defun nthcdr (x y) (if (= x 0) y (nthcdr (- x 1) (cdr y))))
+(defun nthcdr (x y) (if (null y) nil (if (= x 0) y (nthcdr (- x 1) (cdr y)))))
 (defun length (x) (if (null x) 0 (1+ (length (cdr x)))))
 (defun last (x) (if (= (length x) 1) x (last (cdr x))))
 
