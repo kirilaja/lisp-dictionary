@@ -17,11 +17,6 @@
 ;atom eq 
 (defun listp (x) (or (consp x) (null x)))
 
-;atom car
-;atom cdr
-;atom cons
-;eq car
-
 ;eq cdr
 (defun nthcdr (x y) (if (null y) nil (if (= x 0) y (nthcdr (- x 1) (cdr y)))))
 (defun length (x) (if (null x) 0 (1+ (length (cdr x)))))
@@ -30,23 +25,10 @@
 ;eq cons
 (defun make-list (i s) (if (zerop i) nil (cons s (make-list (- i 1) s))))
 
-;car cdr
-;car cons
-;cdr cons
-;atom eq car
-;atom eq cdr
-;atom eq cons
-;atom car cdr
-;atom car cons
-;atom cdr cons
-
 ;eq car cdr
 (defun nth (x y) (if (null y) nil (if (= x 0) (car y) (nth (- x 1) (cdr y))))) 
 (defun member (x y) (if (null y) nil (if (eq x (car y)) y (member x (cdr y)))))   
 
-;eq car cons
-;eq cdr cons
-;car cdr cons
 ;atom eq car cdr
 (defun assoc (x a) (if (equal (caar a) x) (car a) (assoc x (cdr a)))) ; LISP 1.5
 
@@ -59,10 +41,6 @@
 (defun copy-list (x) (if (atom x) x (cons (car x) (copy-list (cdr x)))))
 (defun copy-tree (x) (if (atom x) x (cons (copy-tree (car x)) (copy-tree (cdr x)))))
 
-;cdr cons atom eq
-;cons atom eq car
-;atom eq car cdr cons
- 
 ;math
 (defun abs (x) (if (> x 0) x (- 0 x)))
 (defun plusp (x) (if (> x 0) t))
