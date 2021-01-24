@@ -121,7 +121,7 @@
 (defun a==b (a b) (not (or (not (or (not a) b)) (not (or (not b) a)))))
 (defun b->a (a b) (or (not b) a))
 (defun a->b (a b) (or (not a) b))
-(defun nand (a b) (not (not (or (not a) (not b))))
+(defun nand (a b) (not (and a b)))
 
 ;set
 (defun rplaca (x y) (setf (car x) y))
