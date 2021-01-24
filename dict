@@ -79,7 +79,7 @@
 ;atom cdr cons
 
 ;eq car cdr
-(defun nth (x y) (if (= x 0) (car y) (nth (- x 1) (cdr y)))) 
+(defun nth (x y) (if (null y) nil (if (= x 0) (car y) (nth (- x 1) (cdr y))))) 
 (defun member (x y) (if (null y) nil (if (eq x (car y)) y (member x (cdr y)))))   
 
 ;eq car cons
