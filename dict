@@ -113,7 +113,7 @@
 
 ;lambda
 (defun or (a b) (if a t (if t b)))
-(defun not (b) (if b nil (if t t)))
+(defun not (x) (if x nil t))
 
 ;logic
 (defun and (a b) (not (or (not a) (not b))))                           
