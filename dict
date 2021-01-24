@@ -14,30 +14,30 @@
 ;cons
 (defun acons (key val alist) (cons (cons key val) alist))
 
-;atom eq 
+;atom equal 
 (defun listp (x) (or (consp x) (null x)))
 
-;eq cdr
+;equal rest
 (defun nthcdr (x y) (if (null y) nil (if (= x 0) y (nthcdr (- x 1) (cdr y)))))
 (defun length (x) (if (null x) 0 (1+ (length (cdr x)))))
 (defun last (x) (if (= (length x) 1) x (last (cdr x))))
 
-;eq cons
+;equal cons
 (defun make-list (i s) (if (zerop i) nil (cons s (make-list (- i 1) s))))
 
-;eq car cdr
+;equal first rest
 (defun nth (x y) (if (null y) nil (if (= x 0) (car y) (nth (- x 1) (cdr y))))) 
 (defun member (x y) (if (null y) nil (if (eq x (car y)) y (member x (cdr y)))))   
 
-;atom eq car cdr
+;atom equal first rest
 (defun assoc (x a) (if (equal (caar a) x) (car a) (assoc x (cdr a)))) ; LISP 1.5
 
-;eq car cdr cons
+;equal first rest cons
 (defun append (x y) (if (null x) y (cons (car x) (append (cdr x) y))))
 (defun union (x y) (if (null x) y (if (member (car x) y) (union (cdr x) y) (if t (cons (car x) (union (cdr x) y))))))
 (defun intersection (x y) (if (null x) nil (if (member (car x) y) (cons (car x) (intersection (cdr x) y)) (if t (intersection (cdr x) y))))) 
 
-;car cdr cons atom
+;first rest cons atom
 (defun copy-list (x) (if (atom x) x (cons (car x) (copy-list (cdr x)))))
 (defun copy-tree (x) (if (atom x) x (cons (copy-tree (car x)) (copy-tree (cdr x)))))
 
