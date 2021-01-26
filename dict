@@ -34,6 +34,7 @@
 
 ;equal first rest cons
 (defun append (x y) (if (null x) y (cons (car x) (append (cdr x) y))))
+(defun reverse (lst) (if (null lst) nil (append (reverse (rest lst)) (cons (first lst) '() )))) 
 (defun union (x y) (if (null x) y (if (member (car x) y) (union (cdr x) y) (if t (cons (car x) (union (cdr x) y))))))
 (defun intersection (x y) (if (null x) nil (if (member (car x) y) (cons (car x) (intersection (cdr x) y)) (if t (intersection (cdr x) y))))) 
 (defun set-difference (x y) (if (null x) nil (if (not (member (first x) y)) (cons (first x) (set-difference (rest x) y)) (set-difference (rest x) y)))) ; Common Lisp
