@@ -31,6 +31,7 @@
 
 ;atom equal first rest
 (defun assoc (x a) (if (null a) nil (if (equal (caar a) x) (car a) (assoc x (cdr a))))) 
+(defun rassoc (x a) (if (null a) nil (if (equal (cdar a) x) (car a) (rassoc x (cdr a)))))
 
 ;equal first rest cons
 (defun append (x y) (if (null x) y (cons (car x) (append (cdr x) y))))
