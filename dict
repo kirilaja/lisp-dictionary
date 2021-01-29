@@ -30,7 +30,7 @@
 (defun member (x y) (if (null y) nil (if (eq x (car y)) y (member x (cdr y)))))   
 
 ;atom equal first rest
-(defun assoc (x a) (if (equal (caar a) x) (car a) (assoc x (cdr a)))) ; LISP 1.5
+(defun assoc (x a) (if (null a) nil (if (equal (caar a) x) (car a) (assoc x (cdr a))))) 
 
 ;equal first rest cons
 (defun append (x y) (if (null x) y (cons (car x) (append (cdr x) y))))
