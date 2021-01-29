@@ -25,6 +25,9 @@
 ;equal cons
 (defun make-list (i s) (if (zerop i) nil (cons s (make-list (- i 1) s))))
 
+;first rest
+(defun cdar (x) (cdr (car x)))
+
 ;equal first rest
 (defun nth (x y) (if (null y) nil (if (= x 0) (car y) (nth (- x 1) (cdr y))))) 
 (defun member (x y) (if (null y) nil (if (eq x (car y)) y (member x (cdr y)))))   
