@@ -48,6 +48,9 @@
 (defun copy-list (x) (if (atom x) x (cons (car x) (copy-list (cdr x)))))
 (defun copy-tree (x) (if (atom x) x (cons (copy-tree (car x)) (copy-tree (cdr x)))))
 
+;atom equal first rest cons
+(defun subst (new old tree) (if (equal tree old) new (if (atom tree) tree (cons (subst new old (first tree)) (subst new old (rest tree)))))) ; does not work for dotted lists
+
 ;math
 (defun abs (x) (if (> x 0) x (- 0 x)))
 (defun plusp (x) (if (> x 0) t))
