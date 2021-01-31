@@ -18,9 +18,9 @@
 (defun listp (x) (or (consp x) (null x)))
 
 ;equal rest
-(defun nthcdr (x y) (if (null y) nil (if (= x 0) y (nthcdr (- x 1) (cdr y)))))
-(defun length (x) (if (null x) 0 (1+ (length (cdr x)))))
-(defun last (x) (if (= (length x) 1) x (last (cdr x))))
+(defun nthcdr (x y) (if (null y) nil (if (= x 0) y (nthcdr (- x 1) (rest y)))))
+(defun length (x) (if (null x) 0 (1+ (length (rest x)))))
+(defun last (x) (if (= (length x) 1) x (last (rest x))))
 
 ;equal cons
 (defun make-list (i s) (if (zerop i) nil (cons s (make-list (- i 1) s))))
@@ -29,24 +29,24 @@
 (defun cdar (x) (cdr (car x)))
 
 ;equal first rest
-(defun nth (x y) (if (null y) nil (if (= x 0) (first y) (nth (- x 1) (cdr y))))) 
-(defun member (x y) (if (null y) nil (if (eq x (first y)) y (member x (cdr y)))))   
+(defun nth (x y) (if (null y) nil (if (= x 0) (first y) (nth (- x 1) (rest y))))) 
+(defun member (x y) (if (null y) nil (if (eq x (first y)) y (member x (rest y)))))   
 
 ;atom equal first rest
 (defun equal (x y) (if (or (and (atom x) (atom y) (eq x y)) (and (not (atom x)) (not (atom y)) (equal (first x) (first y)) (equal (rest x) (rest y)))) t))
-(defun assoc (x a) (if (null a) nil (if (equal (caar a) x) (first a) (assoc x (cdr a))))) 
-(defun rassoc (x a) (if (null a) nil (if (equal (cdar a) x) (first a) (rassoc x (cdr a)))))
+(defun assoc (x a) (if (null a) nil (if (equal (caar a) x) (first a) (assoc x (rest a))))) 
+(defun rassoc (x a) (if (null a) nil (if (equal (cdar a) x) (first a) (rassoc x (rest a)))))
 
 ;equal first rest cons
-(defun append (x y) (if (null x) y (cons (first x) (append (cdr x) y))))
+(defun append (x y) (if (null x) y (cons (first x) (append (rest x) y))))
 (defun reverse (lst) (if (null lst) nil (append (reverse (rest lst)) (cons (first lst) '() )))) 
-(defun union (x y) (if (null x) y (if (member (first x) y) (union (cdr x) y) (if t (cons (first x) (union (cdr x) y))))))
-(defun intersection (x y) (if (null x) nil (if (member (first x) y) (cons (first x) (intersection (cdr x) y)) (if t (intersection (cdr x) y))))) 
+(defun union (x y) (if (null x) y (if (member (first x) y) (union (rest x) y) (if t (cons (first x) (union (rest x) y))))))
+(defun intersection (x y) (if (null x) nil (if (member (first x) y) (cons (first x) (intersection (rest x) y)) (if t (intersection (rest x) y))))) 
 (defun set-difference (x y) (if (null x) nil (if (not (member (first x) y)) (cons (first x) (set-difference (rest x) y)) (set-difference (rest x) y)))) ; Common Lisp
 
 ;first rest cons atom
-(defun copy-list (x) (if (atom x) x (cons (first x) (copy-list (cdr x)))))
-(defun copy-tree (x) (if (atom x) x (cons (copy-tree (first x)) (copy-tree (cdr x)))))
+(defun copy-list (x) (if (atom x) x (cons (first x) (copy-list (rest x)))))
+(defun copy-tree (x) (if (atom x) x (cons (copy-tree (first x)) (copy-tree (rest x)))))
 
 ;atom equal first rest cons
 (defun subst (new old tree) (if (equal tree old) new (if (atom tree) tree (cons (subst new old (first tree)) (subst new old (rest tree)))))) ; does not work for dotted lists
@@ -77,4 +77,4 @@
 ;set
 (defun rplaca (x y) (setf (car x) y))
 (defun rplacd (x y) (setf (cdr x) y))
-(defun pop (y) (let ((x (first y))) (setf y (cdr y)) x))
+(defun pop (y) (let ((x (first y))) (setf y (rest y)) x))
