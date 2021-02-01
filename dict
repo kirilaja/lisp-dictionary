@@ -59,6 +59,7 @@
 (defun >= (x y) (or (> x y) (= x y)))
 (defun <= (x y) (or (< x y) (= x y)))
 (defun /= (x y) (or (< x y) (> x y)))
+(defun ! (i) (if (= i 0) 1 (* i (! (- i 1)))))
 
 ;lambda
 (defun or (a b) (if a t (if t b)))
