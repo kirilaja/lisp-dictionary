@@ -49,8 +49,9 @@
 (defun copy-tree (x) (if (atom x) x (cons (copy-tree (first x)) (copy-tree (rest x)))))
 
 ;atom equal first rest cons
-(defun remove (obj lst) (if (null lst) nil (if (equal obj (first lst)) (remove obj (rest lst)) (cons (first lst) (remove obj (rest lst))))))
 (defun subst (new old tree) (if (equal tree old) new (if (atom tree) tree (cons (subst new old (first tree)) (subst new old (rest tree)))))) ; does not work for dotted lists
+(defun remove (obj lst) (if (null lst) nil (if (equal obj (first lst)) (remove obj (rest lst)) (cons (first lst) (remove obj (rest lst))))))
+(defun butlast (lst n) (reverse (nthcdr n (reverse lst))))
 
 ;math
 (defun abs (x) (if (> x 0) x (- 0 x)))
