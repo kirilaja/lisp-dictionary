@@ -44,10 +44,12 @@
 
 ;equal first rest cons
 (defun append (x y) (if (null x) y (cons (first x) (append (rest x) y))))
-(defun reverse (lst) (if (null lst) nil (append (reverse (rest lst)) (cons (first lst) '() )))) 
+(defun reverse (lst) (if (null lst) nil (append (reverse (rest lst)) (cons (first lst) '() ))))
+(defun butlast (lst n) (reverse (nthcdr n (reverse lst))))
 (defun union (x y) (if (null x) y (if (member (first x) y) (union (rest x) y) (if t (cons (first x) (union (rest x) y))))))
 (defun intersection (x y) (if (null x) nil (if (member (first x) y) (cons (first x) (intersection (rest x) y)) (if t (intersection (rest x) y))))) 
 (defun set-difference (x y) (if (null x) nil (if (not (member (first x) y)) (cons (first x) (set-difference (rest x) y)) (set-difference (rest x) y)))) ; Common Lisp
+(defun remove-duplicates (lst) (if (null lst) nil (if (member (first lst) (rest lst)) (remove-duplicates (rest lst)) (cons (first lst) (remove-duplicates (rest lst))))))
 (defun mapcar (fn lst) (if (null lst) nil (cons (funcall fn (first lst)) (mapcar fn (rest lst)))))
 (defun remove-if (fn lst) (if (null lst) nil (if (funcall fn (first lst)) (remove-if fn (rest lst)) (cons (first lst) (remove-if fn (rest lst))))))
 
@@ -56,10 +58,8 @@
 (defun copy-tree (x) (if (atom x) x (cons (copy-tree (first x)) (copy-tree (rest x)))))
 
 ;atom equal first rest cons
-(defun butlast (lst n) (reverse (nthcdr n (reverse lst))))
 (defun subst (new old tree) (if (equal tree old) new (if (atom tree) tree (cons (subst new old (first tree)) (subst new old (rest tree)))))) ; does not work for dotted lists
 (defun remove (obj lst) (if (null lst) nil (if (equal obj (first lst)) (remove obj (rest lst)) (cons (first lst) (remove obj (rest lst))))))
-(defun remove-duplicates (lst) (if (null lst) nil (if (member (first lst) (rest lst)) (remove-duplicates (rest lst)) (cons (first lst) (remove-duplicates (rest lst))))))
 
 ;math
 (defun abs (x) (if (> x 0) x (- 0 x)))
