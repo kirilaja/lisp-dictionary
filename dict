@@ -32,6 +32,7 @@
 (defun nth (x y) (if (null y) nil (if (= x 0) (first y) (nth (- x 1) (rest y))))) 
 (defun member (x y) (if (null y) nil (if (eq x (first y)) y (member x (rest y)))))
 (defun some (fn lst) (if (null lst) nil (or (funcall fn (first lst)) (some fn (rest lst)))))
+(defun every (fn lst) (if (null lst) t (and (funcall fn (first lst)) (every fn (rest lst)))))
 
 ;atom equal first rest
 (defun equal (x y) (if (or (and (atom x) (atom y) (eq x y)) (and (not (atom x)) (not (atom y)) (equal (first x) (first y)) (equal (rest x) (rest y)))) t))
