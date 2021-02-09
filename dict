@@ -45,6 +45,7 @@
 (defun union (x y) (if (null x) y (if (member (first x) y) (union (rest x) y) (if t (cons (first x) (union (rest x) y))))))
 (defun intersection (x y) (if (null x) nil (if (member (first x) y) (cons (first x) (intersection (rest x) y)) (if t (intersection (rest x) y))))) 
 (defun set-difference (x y) (if (null x) nil (if (not (member (first x) y)) (cons (first x) (set-difference (rest x) y)) (set-difference (rest x) y)))) ; Common Lisp
+(defun mapcar (fn lst) (if (null lst) nil (cons (funcall fn (first lst)) (mapcar fn (rest lst)))))
 
 ;first rest cons atom
 (defun copy-list (x) (if (atom x) x (cons (first x) (copy-list (rest x)))))
