@@ -28,6 +28,8 @@
 
 ;first rest
 (defun cdar (x) (cdr (car x)))
+(defun cadr (x) (car (cdr x)))
+(defun second (x) (cadr x))
 
 ;equal first rest
 (defun nth (x y) (if (null y) nil (if (= x 0) (first y) (nth (- x 1) (rest y))))) 
