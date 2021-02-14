@@ -43,6 +43,7 @@
 (defun rassoc (x a) (if (null a) nil (if (equal (cdar a) x) (first a) (rassoc x (rest a)))))
 
 ;equal first rest cons
+(defun pair (list) (if (null list) nil (cons (cons (first list) (cadr list)) (pair (cddr list)))))
 (defun append (x y) (if (null x) y (cons (first x) (append (rest x) y))))
 (defun reverse (lst) (if (null lst) nil (append (reverse (rest lst)) (cons (first lst) '() ))))
 (defun butlast (lst n) (reverse (nthcdr n (reverse lst))))
