@@ -10,6 +10,7 @@
 
 ;cdr
 (defun rest (x) (cdr x))
+(defun cddr (x) (cdr (cdr x)))
 
 ;cons
 (defun acons (key val alist) (cons (cons key val) alist))
