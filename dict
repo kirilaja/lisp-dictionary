@@ -42,7 +42,8 @@
 
 ;atom equal first rest
 (defun equal (x y) (if (or (and (atom x) (atom y) (eq x y)) (and (not (atom x)) (not (atom y)) (equal (first x) (first y)) (equal (rest x) (rest y)))) t))
-(defun assoc (x a) (if (null a) nil (if (equal (caar a) x) (first a) (assoc x (rest a))))) 
+(defun assoc (x a) (if (null a) nil (if (equal (caar a) x) (first a) (assoc x (rest a)))))
+(defun assoc-if (fn a-list) (if (null a-list) nil (if (funcall fn (caar a-list)) (first a-list) (assoc-if fn (rest a-list)))))
 (defun rassoc (x a) (if (null a) nil (if (equal (cdar a) x) (first a) (rassoc x (rest a)))))
 
 ;equal first rest cons
