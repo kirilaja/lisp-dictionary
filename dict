@@ -46,6 +46,7 @@
 (defun rassoc (x a) (if (null a) nil (if (equal (cdar a) x) (first a) (rassoc x (rest a)))))
 
 ;equal first rest cons
+(defun adjoin (x lst) (if (member x lst) lst (cons x lst)))
 (defun pair (list) (if (null list) nil (cons (cons (first list) (cadr list)) (pair (cddr list)))))
 (defun pairlis (list-one list-two assoc-list) (if (null list-one) assoc-list (cons (cons (first list-one) (first list-two)) (pairlis (rest list-one) (rest list-two) assoc-list))))
 (defun append (x y) (if (null x) y (cons (first x) (append (rest x) y))))
