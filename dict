@@ -38,6 +38,8 @@
 (defun every (fn lst) (if (null lst) t (and (funcall fn (first lst)) (every fn (rest lst)))))
 (defun assoc-if (fn a-list) (if (null a-list) nil (if (funcall fn (caar a-list)) (first a-list) (assoc-if fn (rest a-list)))))
 (defun assoc-if-not (fn a-list) (if (null a-list) nil (if (not (funcall fn (caar a-list))) (first a-list) (assoc-if-not fn (rest a-list)))))
+(defun rassoc-if (fn a-list) (if (null a-list) nil (if (funcall fn (cdar a-list)) (first a-list) (rassoc-if fn (rest a-list)))))
+(defun rassoc-if-not (fn a-list) (if (null a-list) nil (if (not (funcall fn (cdar a-list))) (first a-list) (rassoc-if-not fn (rest a-list)))))
 
 ;equal rest cons
 (defun maplist (fn lst) (if (null lst) nil (cons (funcall fn lst) (maplist fn (rest lst)))))
