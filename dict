@@ -53,7 +53,8 @@
 (defun butlast (lst n) (reverse (nthcdr n (reverse lst))))
 (defun union (x y) (if (null x) y (if (member (first x) y) (union (rest x) y) (if t (cons (first x) (union (rest x) y))))))
 (defun intersection (x y) (if (null x) nil (if (member (first x) y) (cons (first x) (intersection (rest x) y)) (if t (intersection (rest x) y))))) 
-(defun set-difference (x y) (if (null x) nil (if (not (member (first x) y)) (cons (first x) (set-difference (rest x) y)) (set-difference (rest x) y)))) ; Common Lisp
+(defun set-difference (x y) (if (null x) nil (if (not (member (first x) y)) (cons (first x) (set-difference (rest x) y)) (set-difference (rest x) y))))
+(defun set-exclusive-or (lst1 lst2) (append (set-difference lst1 lst2) (set-difference lst2 lst1)))
 (defun remove-duplicates (lst) (if (null lst) nil (if (member (first lst) (rest lst)) (remove-duplicates (rest lst)) (cons (first lst) (remove-duplicates (rest lst))))))
 (defun mapcar (fn lst) (if (null lst) nil (cons (funcall fn (first lst)) (mapcar fn (rest lst)))))
 (defun remove-if (fn lst) (if (null lst) nil (if (funcall fn (first lst)) (remove-if fn (rest lst)) (cons (first lst) (remove-if fn (rest lst))))))
