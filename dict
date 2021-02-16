@@ -63,6 +63,7 @@
 (defun remove-duplicates (lst) (if (null lst) nil (if (member (first lst) (rest lst)) (remove-duplicates (rest lst)) (cons (first lst) (remove-duplicates (rest lst))))))
 (defun mapcar (fn lst) (if (null lst) nil (cons (funcall fn (first lst)) (mapcar fn (rest lst)))))
 (defun remove-if (fn lst) (if (null lst) nil (if (funcall fn (first lst)) (remove-if fn (rest lst)) (cons (first lst) (remove-if fn (rest lst))))))
+(defun remove-if-not (fn lst) (if (null lst) nil (if (not (funcall fn (first lst))) (remove-if fn (rest lst)) (cons (first lst) (remove-if-not fn (rest lst))))))
 
 ;first rest cons atom
 (defun copy-list (x) (if (atom x) x (cons (first x) (copy-list (rest x)))))
