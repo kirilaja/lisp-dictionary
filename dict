@@ -102,4 +102,5 @@
 ;set
 (defun rplaca (x y) (setf (car x) y))
 (defun rplacd (x y) (setf (cdr x) y))
+(defun nconc. (lst1 lst2) (if (null lst1) lst2 (if (setf (rest (last lst1)) lst2) lst1)))
 (defun pop (y) (let ((x (first y))) (setf y (rest y)) x))
