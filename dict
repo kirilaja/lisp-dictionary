@@ -73,6 +73,7 @@
 ;atom equal first rest cons
 (defun subst (new old tree) (if (equal tree old) new (if (atom tree) tree (cons (subst new old (first tree)) (subst new old (rest tree)))))) ; does not work for dotted lists
 (defun remove (obj lst) (if (null lst) nil (if (equal obj (first lst)) (remove obj (rest lst)) (cons (first lst) (remove obj (rest lst))))))
+(defun sublis. (a-lst y) (if (atom y) (if (null a-lst) y (if (eq (caar a-lst) y) (cdar a-lst) (sublis. (rest a-lst) y))) (cons (sublis. a-lst (first y)) (sublis. a-lst (rest y)))))
 
 ;math
 (defun abs (x) (if (> x 0) x (- 0 x)))
